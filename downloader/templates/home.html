@@ -27,6 +27,7 @@
 		  <!-- Default panel contents -->
 		<div class="panel-heading"><h3>Resultados</h3></div>
 		<div class="panel-body">
+			<p class="alert alert-warning">Aviso: GMusic está pensada para descargar sonidos de goear que tu mismo has subido y quieres recuperar.</p>
 			<div style="width: 50px; margin: 0 auto;" id="load">
 				<img src="{{STATIC_URL}}img/cargar.gif">
 			</div>
@@ -62,7 +63,7 @@ function show_results(song) {
 
 	.done(function(data) {
 		console.log("mostrando datos");
-		if (data == 'null') {
+		if (data == null) {
 			console.log("No se encontraron resultados");
 			$('#messages').append('<div class="alert alert-danger">No se encontraron resultados</div>');
 			$('#messages').show();
@@ -105,18 +106,8 @@ $(document).ready(function(){
 	    $('#messages').hide();
 	});
 
-	$('#creadme').click(function() {
-		if ($('#readme').show()) {
-			$('#readme').hide();
-		}
-		if ($('#readme').hide()) {
-			$('#readme').show()
-		}
-	})
-
 	$('#load').hide();
 	$('#messages').hide();
-	$('#readme').hide();
 });
 </script>
 

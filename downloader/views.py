@@ -24,7 +24,7 @@ def buscar_cancion_json(request):
 	lengs = re.findall(r'<li class="length radius_3">([-:\d]+)</li>', contenido)
 
 	if len(names) == 0:
-		songs = 'null'
+		songs = None
 	else:
 		for i in range(0,len(names)):
 			try: 
@@ -32,4 +32,4 @@ def buscar_cancion_json(request):
 			except:
 				pass
 
-	return HttpResponse(json.dumps(songs), content_type="application/json",mimetype='application/json')
+	return HttpResponse(json.dumps(songs, sort_keys=True, indent=4), content_type="application/json",mimetype='application/json')

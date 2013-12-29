@@ -1,5 +1,6 @@
 from django.conf.urls import *
 from downloader.views import *
+from settings import *
 
 from django.contrib import admin
 admin.autodiscover()

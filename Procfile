@@ -1,1 +1,1 @@
-web: gunicorn downloadmusic.wsgi
+web: python manage.py collectstatic --noinput; gunicorn hellodjango.wsgi

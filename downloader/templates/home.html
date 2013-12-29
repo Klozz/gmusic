@@ -18,14 +18,19 @@
 	<a href="https://github.com/irvingprog/gmusic"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>	
 	<!-- End Github badge forkme -->
 	<div class="container">
-			<h1>GMusic <span class="glyphicon glyphicon-music"></span></h1>
-			<br>
-			<div class="input-group" id="busqueda"> 
-				<input class="form-control" type="text" id="name_song" name="name_song">
-				<span class="input-group-btn"><button id="search" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Buscar</button></span>
+			<div class="row show-grid">
+				<div class="col-md-6 col-md-offset-3 text-center">
+					<h1>GMusic <span class="glyphicon glyphicon-music"></span></h1>
+				</div>
+				<div class="col-md-6 col-md-offset-3">
+					<br>
+					<div class="input-group" id="busqueda"> 
+						<input class="form-control" type="text" id="name_song" name="name_song">
+						<span class="input-group-btn"><button id="search" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Buscar</button></span>
+					</div>
+				</div>
 			</div>
 		<br>
-
 		<div class="panel panel-primary">
 		  <!-- Default panel contents -->
 		<div class="panel-heading"><h3>Resultados</h3></div>
@@ -50,9 +55,9 @@
 
 			</tbody>
 		</table>
-			<footer style="text-align: right;" class="panel-footer">Powered by: Django 2013 | <a target="blank_" href="http://github.com/irvingprog">@irvingprog</a> | <a href="https://github.com/irvingprog/gmusic">Github</a></footer>
+			<footer class="panel-footer text-right">Powered by: Django 2013 | <a target="blank_" href="http://github.com/irvingprog">@irvingprog</a> | <a href="https://github.com/irvingprog/gmusic">Github</a></footer>
 		</div>
-		<p class="alert alert-info">Aviso: GMusic está pensada para descargar sonidos de goear que tu mismo has subido y quieres recuperar.</p>
+		<p class="alert alert-info text-center">Aviso: GMusic está pensada para descargar sonidos de goear que tu mismo has subido y quieres recuperar.</p>
 	</div>
 
 <script src="{{STATIC_URL}}js/jquery-1.8.2.js"></script>

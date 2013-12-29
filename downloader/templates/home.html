@@ -47,10 +47,9 @@
 
 			</tbody>
 		</table>
-		<footer style="text-align: right;" class="panel-footer">Powered by: Django 2013 | <a target="blank_" href="http://github.com/irvingprog">@irvingprog</a></footer>
+			<footer style="text-align: right;" class="panel-footer">Powered by: Django 2013 | <a target="blank_" href="http://github.com/irvingprog">@irvingprog</a></footer>
 		</div>
 	</div>
-
 
 <script src="{{STATIC_URL}}js/jquery-1.8.2.js"></script>
 
@@ -106,8 +105,18 @@ $(document).ready(function(){
 	    $('#messages').hide();
 	});
 
+	$('#creadme').click(function() {
+		if ($('#readme').show()) {
+			$('#readme').hide();
+		}
+		if ($('#readme').hide()) {
+			$('#readme').show()
+		}
+	})
+
 	$('#load').hide();
 	$('#messages').hide();
+	$('#readme').hide();
 });
 </script>
 

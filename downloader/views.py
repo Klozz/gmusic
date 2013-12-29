@@ -8,13 +8,14 @@ from django.contrib import messages
 import re
 import json
 
+http = Http()
+
 def home(request):
 	return render_to_response('home.html', locals(), RequestContext(request))
 
 def buscar_cancion_json(request):
-	http = Http()
 	search = request.GET.get('name_song')
-	resp, contenido = http.request("http://www.goear.com/search/"+search)
+	contenido = http.request("http://www.goear.com/search/"+search)[1]
 	songs = []
 	names = re.findall(r'<span class="song">([-.\s\w]+)</span>',contenido)
 	artist = re.findall(r'<span class="group">([-.\s\w]+)</span>', contenido)

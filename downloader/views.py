@@ -8,6 +8,7 @@ from django.contrib import messages
 import re
 import json
 
+
 http = Http()
 
 def home(request):
@@ -25,11 +26,17 @@ def buscar_cancion_json(request):
 
 	if len(names) == 0:
 		songs = None
+		result = False
 	else:
 		for i in range(0,len(names)):
 			try: 
 				songs.append({'name':names[i], 'artist':artist[i],'id':ids[i],'quality': qualitys[i], 'len': lengs[i]})
 			except:
 				pass
+
+		result = True
+
+	model_search = Search(name=search.replace('-',' '),result=result)
+	model_search.save()
 
 	return HttpResponse(json.dumps(songs, sort_keys=True, indent=4), content_type="application/json",mimetype='application/json')

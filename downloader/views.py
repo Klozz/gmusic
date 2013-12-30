@@ -12,7 +12,16 @@ import json
 http = Http()
 
 def home(request):
+	recent_searchs = Search.objects.all().order_by('-date')[:5]
 	return render_to_response('home.html', locals(), RequestContext(request))
+
+def ultimas_cancones_json(request):
+	recent_searchs = Search.objects.all().order_by('-date')[:5]
+	searchs = []
+	for i in range(0,5):
+		searchs.append(recent_searchs[i].name)
+
+	return HttpResponse(json.dumps(searchs, sort_keys=True, indent=4), content_type="application/json",mimetype='application/json')
 
 def buscar_cancion_json(request):
 	search = request.GET.get('name_song')

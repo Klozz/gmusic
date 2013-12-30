@@ -19,18 +19,22 @@
 	<!-- End Github badge forkme -->
 	<div class="container">
 			<div class="row show-grid">
-				<div class="col-md-6 col-md-offset-3 text-center">
+				<div class="col-md-6" style="margin-top: 20px">
 					<h1>GMusic <span class="glyphicon glyphicon-music"></span></h1>
-				</div>
-				<div class="col-md-6 col-md-offset-3">
-					<br>
 					<div class="input-group" id="busqueda"> 
 						<input class="form-control" type="text" id="name_song" name="name_song">
 						<span class="input-group-btn"><button id="search" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Buscar</button></span>
 					</div>
 				</div>
+				<div class="col-md-6 text-center">
+					<h3>Ultimas busquedas</h3>
+					<div id="ultimas_busquedas" class="alert alert-info">
+						{%for item in recent_searchs%}
+						<p>{{item.name}}</p>
+						{%endfor%}
+					</div>
+				</div>
 			</div>
-		<br>
 		<div class="panel panel-primary">
 		  <!-- Default panel contents -->
 		<div class="panel-heading"><h3>Resultados</h3></div>
@@ -106,6 +110,19 @@ function show_results(song) {
 	});
 }
 
+function show_recent_searchs() {
+	$.getJSON("{%url 'ultimas_cancones_json'%}", function() {
+		$('#ultimas_busquedas').html('');
+	})
+
+	.done(function(data) {
+		for(var i=0;i<data.length;i++) {
+			var busqueda = $('<p>').text(data[i]);
+			$('#ultimas_busquedas').append(busqueda);
+		}
+	})
+}
+
 $(document).ready(function(){
 	$('#search').click(function(){
 	    show_results($('#name_song').val());
@@ -116,6 +133,10 @@ $(document).ready(function(){
 
 	$('#load').hide();
 	$('#messages').hide();
+
+	setInterval(function() {
+	      show_recent_searchs();
+	}, 5000);
 });
 </script>
 

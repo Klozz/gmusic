@@ -19,7 +19,7 @@ def ultimas_cancones_json(request):
 	recent_searchs = Search.objects.all().order_by('-date')[:5]
 	searchs = []
 	for i in range(0,5):
-		searchs.append(recent_searchs[i].name)
+		searchs.append({'name':recent_searchs[i].name,'result': recent_searchs[i].result})
 
 	return HttpResponse(json.dumps(searchs, sort_keys=True, indent=4), content_type="application/json",mimetype='application/json')
 

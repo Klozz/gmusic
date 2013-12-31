@@ -25,7 +25,9 @@ def ultimas_cancones_json(request):
 
 def buscar_cancion_json(request):
 	search = request.GET.get('name_song')
-	contenido = http.request("http://www.goear.com/search/"+search)[1]
+	contenido1 = http.request("http://www.goear.com/search/"+search)[1]
+	contenido2 = http.request("http://www.goear.com/search/"+search)[1]
+	contenido = contenido1 + contenido2
 	songs = []
 	names = re.findall(r'<span class="song">([-.\s\w]+)</span>',contenido)
 	artist = re.findall(r'<span class="group">([-.\s\w]+)</span>', contenido)

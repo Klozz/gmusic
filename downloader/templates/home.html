@@ -12,6 +12,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+
 </head>
 <body>
 	<!-- Github badge forkme -->
@@ -21,18 +22,30 @@
 			<div class="row show-grid">
 				<div class="col-md-6" style="margin-top: 20px">
 					<h1>GMusic <span class="glyphicon glyphicon-music"></span></h1>
+					<br>
 					<div class="input-group" id="busqueda"> 
 						<input class="form-control" type="text" id="name_song" name="name_song">
 						<span class="input-group-btn"><button id="search" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Buscar</button></span>
 					</div>
+					<br>
 				</div>
-				<div class="col-md-6 text-center">
-					<h3>Ultimas busquedas</h3>
-					<div id="ultimas_busquedas" class="alert alert-info">
+				<div class="col-md-4 col-md-offset-1 text-center alert alert-info">
+						<table class="table">
+						<thead>
+							<tr>
+								<th class="text-center" style="border:none;"><h3>Ultimas busquedas</h3></th>
+							</tr>
+						</thead>	
+						<tbody id="ultimas_busquedas">
 						{%for item in recent_searchs%}
-						<p>{{item.name}} {%if item.result%} <span class="glyphicon glyphicon-check"> {%else%} <span class="glyphicon glyphicon-remove">{%endif%}</p>
+						<tr>
+							<td style="border-top:none;">{{item.name}}</td>
+							<td style="border-top:none;">{%if item.result%}<span class="glyphicon glyphicon-check"> 
+							{%else%}<span class="glyphicon glyphicon-remove">{%endif%}</td>
+						</tr>
 						{%endfor%}
-					</div>
+						</tbody>
+						</table>
 				</div>
 			</div>
 		<div class="panel panel-primary">
@@ -117,13 +130,15 @@ function show_recent_searchs() {
 
 	.done(function(data) {
 		for(var i=0;i<data.length;i++) {
-			var busqueda = $('<p>').text(data[i].name);
+			var busqueda = $('<tr>')
+			var name = $('<td style="border-top:none;"">').text(data[i].name);
 			if(data[i].result) {
-				busqueda.append('  <span class="glyphicon glyphicon-check">')
+				result = $('<td style="border-top:none;"><span class="glyphicon glyphicon-check">')
 			}
 			else {
-				busqueda.append('  <span class="glyphicon glyphicon-remove">')
+				result = $('<td style="border-top:none;"><span class="glyphicon glyphicon-remove">')
 			}
+			busqueda.append(name, result)
 			$('#ultimas_busquedas').append(busqueda);
 		}
 	})

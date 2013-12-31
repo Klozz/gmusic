@@ -7,6 +7,7 @@ from httplib2 import Http
 from django.contrib import messages
 import re
 import json
+from django.core import serializers
 
 
 http = Http()
@@ -17,11 +18,8 @@ def home(request):
 
 def ultimas_cancones_json(request):
 	recent_searchs = Search.objects.all().order_by('-date')[:5]
-	searchs = []
-	for i in range(0,5):
-		searchs.append({'name':recent_searchs[i].name,'result': recent_searchs[i].result})
-
-	return HttpResponse(json.dumps(searchs, sort_keys=True, indent=4), content_type="application/json",mimetype='application/json')
+	searchs = serializers.serialize('json', recent_searchs, sort_keys=True, indent=4)
+	return HttpResponse(searchs, content_type="application/json",mimetype='application/json')
 
 def buscar_cancion_json(request):
 	search = request.GET.get('name_song')

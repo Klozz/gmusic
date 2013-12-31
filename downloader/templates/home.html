@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset='utf-8'> 
@@ -131,8 +131,8 @@ function show_recent_searchs() {
 	.done(function(data) {
 		for(var i=0;i<data.length;i++) {
 			var busqueda = $('<tr>')
-			var name = $('<td style="border-top:none;"">').text(data[i].name);
-			if(data[i].result) {
+			var name = $('<td style="border-top:none;"">').text(data[i].fields.name);
+			if(data[i].fields.result) {
 				result = $('<td style="border-top:none;"><span class="glyphicon glyphicon-check">')
 			}
 			else {

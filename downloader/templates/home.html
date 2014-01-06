@@ -108,7 +108,7 @@ function show_results(song) {
 
 				var textspan = $('<span class="glyphicon glyphicon-save">').text(" DESCARGAR")
 				var button = $('<button class="btn btn-success">').append(textspan)
-				var link = $('<a href=\"http://www.goear.com/action/sound/get/'+data[i].id 
+				var link = $('<a target="blank_" href=\"http://www.goear.com/action/sound/get/'+data[i].id 
 					+'\" download=\"'+data[i].name +' - '+ data[i].artist +'\">').append(button)
 				var download = $('<td>').append(link)
 				$(file).append(name, artist, len, quality, download)
@@ -126,7 +126,7 @@ function show_results(song) {
 }
 
 function show_recent_searchs() {
-	$.getJSON("{%url 'ultimas_cancones_json'%}", function() {
+	$.getJSON("{%url 'ultimas_canciones_json'%}", function() {
 		$('#ultimas_busquedas').html('');
 	})
 

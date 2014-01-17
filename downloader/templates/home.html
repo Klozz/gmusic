@@ -13,6 +13,29 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
+	<style type="text/css">
+		@media screen and (max-width: 720px) {
+			#resultados table, #resultados thead, #resultados tr, #resultados th, #resultados tbody, #resultados td {
+				display: block;
+			}
+
+			#resultados thead tr {
+				position: absolute;
+				top: -9999px;
+				left: -9999px;
+			}
+
+			#resultados tr td:before {
+				position: absolute;
+				top: 6px;
+				left: 6px;
+				width: 45%;
+				padding-right: 10px;
+				white-space: nowrap;
+			}
+		}		
+	</style>
+
 </head>
 <body>
 	<!-- Github badge forkme -->
@@ -58,22 +81,20 @@
 			<div id="messages">
 			</div>
 		</div>
-		<div class="table-responsive">
-			<table class="table table-striped">
-				<thead>
-				<tr>
-					<th><h3><span class="label label-info">Nombre</span></h3></th>
-					<th><h3><span class="label label-info">Artísta</span></h3></th>
-					<th><h3><span class="label label-info">Duración</span></h3></th>
-					<th><h3><span class="label label-info">Calidad</span></h3></th>
-					<th><h3><span class="label label-info"></span></h3></th>
-				</tr>
-				</thead>
-				<tbody id="content_table">
+		<table id="resultados" class="table table-striped">
+			<thead>
+			<tr>
+				<th><h3><span class="label label-info">Nombre</span></h3></th>
+				<th><h3><span class="label label-info">Artísta</span></h3></th>
+				<th><h3><span class="label label-info">Duración</span></h3></th>
+				<th><h3><span class="label label-info">Calidad</span></h3></th>
+				<th><h3><span class="label label-info"></span></h3></th>
+			</tr>
+			</thead>
+			<tbody id="content_table">
 
-				</tbody>
-			</table>
-		</div>
+			</tbody>
+		</table>
 		<footer class="panel-footer text-right">Powered by: Django 2013 | <a target="blank_" href="http://github.com/irvingprog">@irvingprog</a> | <a href="https://github.com/irvingprog/gmusic">Github</a></footer>
 		</div>
 		<p class="alert alert-info text-center">Aviso: GMusic está pensada para descargar sonidos de goear que tu mismo has subido y quieres recuperar.</p>
@@ -107,7 +128,7 @@ function show_results(song) {
 				var quality = $('<td>').text(data[i].quality +' kbps')
 
 				var textspan = $('<span class="glyphicon glyphicon-save">').text(" DESCARGAR")
-				var button = $('<button class="btn btn-success">').append(textspan)
+				var button = $('<button class="btn btn-success" id="btn-'+data[i].id+'">').append(textspan)
 				var link = $('<a target="blank_" href=\"http://www.goear.com/action/sound/get/'+data[i].id 
 					+'\" download=\"'+data[i].name +' - '+ data[i].artist +'\">').append(button)
 				var download = $('<td>').append(link)
